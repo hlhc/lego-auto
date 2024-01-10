@@ -25,9 +25,30 @@ func (c Config) ValidateDirectory(val string) bool {
 	return slices.Contains(validDirectories, val)
 }
 
+// ValidateCA validates that the CA is valid
+func (c Config) ValidateCA(val string) bool {
+	validCa := []string{"letsencrypt", "google"}
+	return slices.Contains(validCa, val)
+}
+
+// ValidateKeyType validates that the KeyType is valid
+func (c Config) ValidateKeyType(val string) bool {
+	validKeyType := []string{
+		"P256", // EC256
+		"P384", // EC384
+		"2048", // RSA2048
+		"3072", // RSA3072
+		"4096", // RSA4096
+		"8192", // RSA8192
+	}
+	return slices.Contains(validKeyType, val)
+}
+
 func (c Config) Messages() map[string]string {
 	return validate.MS{
 		"ValidateFolder":    "{field} must point to a valid folder.",
 		"ValidateDirectory": "Directory must be one of: production, staging",
+		"ValidateCA":        "CA must be one of: letsencrypt, google",
+		"ValidateKeyType":   "Key Type must be one of: P256, P384, 2048, 3072, 4096, 8192",
 	}
 }

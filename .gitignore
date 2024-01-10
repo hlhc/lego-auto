@@ -10,3 +10,5 @@ config.yaml
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+tmp

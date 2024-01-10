@@ -18,16 +18,20 @@ import (
 
 // Config config struct
 type Config struct {
-	DataDir     string        `koanf:"datadir" validate:"required|ValidateFolder"`
-	CacheDir    string        `koanf:"cachedir" validate:"required"`
-	Domains     []string      `koanf:"domains" validate:"required"`
-	DNS         []string      `koanf:"dns"`
-	Email       string        `koanf:"email" validate:"required|email"`
-	Provider    string        `koanf:"provider" validate:"required"`
-	Directory   string        `koanf:"directory" validate:"ValidateDirectory"`
-	RenewBefore time.Duration `koanf:"renewbefore"`
-	Timeout     time.Duration `koanf:"timeout"`
-	k           *koanf.Koanf
+	DataDir         string        `koanf:"datadir" validate:"required|ValidateFolder"`
+	CacheDir        string        `koanf:"cachedir" validate:"required"`
+	Domains         []string      `koanf:"domains" validate:"required"`
+	DNS             []string      `koanf:"dns"`
+	Email           string        `koanf:"email" validate:"required|email"`
+	DNSProvider     string        `koanf:"dnsprovider" validate:"required"`
+	CA              string        `koanf:"ca" validate:"ValidateCA"`
+	Directory       string        `koanf:"directory" validate:"ValidateDirectory"`
+	KeyType         string        `koanf:"keytype" validate:"ValidateKeyType"`
+	AcmeCredentials string        `koanf:"acmecred"`
+	GCloudProject   string        `koanf:"gcloudproject"`
+	RenewBefore     time.Duration `koanf:"renewbefore"`
+	Timeout         time.Duration `koanf:"timeout"`
+	k               *koanf.Koanf
 }
 
 // LoadConfig instantiates a new Config
